@@ -4,15 +4,20 @@ import Image from 'next/image';
 import { BookCardContainer } from './styles';
 import { Tooltip } from 'react-tooltip';
 
-type BookCardProps = {
+interface BuyLink {
+  name: string;
+  url: string;
+}
+
+interface BookCardProps {
   image: string;
   title: string;
   description: string;
   author: string;
   rank: number;
   weeks_on_list: number;
-  buy_links: any;
-};
+  buy_links: BuyLink[];
+}
 
 const BookCard: React.FC<BookCardProps> = ({
   image,
@@ -27,10 +32,10 @@ const BookCard: React.FC<BookCardProps> = ({
   const descriptionTreated = description?.length > 120 ? description.substring(0, 100) + "..." : description;
 
   return (
-    <BookCardContainer>
-      <div className="book-card-content" key={title}>
+    <BookCardContainer key={`${title}-${rank}`}>
+      <div className="book-card-content" >
         <div className="image-book">
-          <Image src={image} alt={title} width={300} height={300}/>
+          <Image src={image} alt={title} width={300} height={300} priority/>
         </div>
         <h2>{title}</h2>
         <div className="book-card-description">
