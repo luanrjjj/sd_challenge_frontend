@@ -26,7 +26,6 @@ interface List {
   books: BookProps[];
 }
 
-
 const Home: React.FC = () => {
   const [lists, setLists] = useState<List[]>([])
   const [filter, setFilter] = useState('')
@@ -49,7 +48,9 @@ const Home: React.FC = () => {
   }, []);
 
   const getListFiltered = useCallback(async () => {
-    if(filter.length == 0) return;
+    if (filter.length == 0) {
+      return;
+    }
     const listByFilter = lists.find((list: List) =>
         list.list_name === filter
     )
@@ -70,7 +71,6 @@ const Home: React.FC = () => {
   },[getListFiltered])
 
   return (
-    <>
       <Container>
         <div className="title-page">
           <h1>NY Times Best Sellers</h1>
@@ -124,9 +124,8 @@ const Home: React.FC = () => {
             {lists.map((list: List) => (
                 <div className="content" key={list.list_name}>
                   <h2>{list.list_name}</h2>
-                  <div className='wrapper'>
                     <div className="row-books">
-                      {list.books.slice(0, 3).map((book: BookProps) => (
+                      {list.books.slice(0, 3).map((book: BookProps, index) => (
                         <BookCard
                           image={book.book_image}
                           title={book.title}
@@ -138,15 +137,12 @@ const Home: React.FC = () => {
                         />
                       ))}
                     </div>
-                  </div>
                   <div className="separator"/>
                 </div>
               ))}
            </div>
           )}
       </Container>
-    </>
-
   )
 }
 

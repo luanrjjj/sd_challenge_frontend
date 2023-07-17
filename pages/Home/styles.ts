@@ -82,7 +82,6 @@ export const Container = styled.div `
   }
 
   .row-books {
-    width: 100%;
     grid-template-columns: repeat(3, auto);
     display: grid;
     grid-gap: 20px;
