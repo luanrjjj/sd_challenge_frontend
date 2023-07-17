@@ -5,21 +5,36 @@ export const BookContainer = styled.div`
 
   .book-content {
     display: grid;
-    grid-template-columns: 170px auto;
+    grid-template-columns: 220px auto;
     background-color: ${colors.grayThreadShade2};
     width: 1200px;
     padding: 20px;
     border-radius: 12px;
     margin-top: 20px;
 
+    @media (max-width: 1200px) {
+    max-width: 950px;
+    grid-template-columns: auto;
+    }
+
+  @media (max-width: 950px) {
+    max-width: 600px;
+  }
+
+  @media (max-width: 600px) {
+    max-width: 320px;
+  }
+
     .book-buy-links {
       display: flex;
-      margin-top: 10px;
+      margin-top: 20px;
     }
 
     .book-image {
       margin: auto 0;
-      max-width: 150px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
     }
 
     .book-information {
@@ -27,10 +42,8 @@ export const BookContainer = styled.div`
       flex-direction: column;
     }
 
-
-
     .book-description {
-      height: 50px;
+      height: 100px;
     }
 
     img {
@@ -40,6 +53,7 @@ export const BookContainer = styled.div`
     h2 {
       color: ${colors.white};
       font-size: 1.2rem;
+      margin-bottom: 10px;
     }
 
     span {
@@ -47,11 +61,8 @@ export const BookContainer = styled.div`
     }
 
     p {
-      margin-bottom: 0;
+      margin: 0;
       color: ${colors.letterGrayColor};
     }
   }
-
-
-
 `
