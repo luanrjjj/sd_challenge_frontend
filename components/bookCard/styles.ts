@@ -2,30 +2,28 @@ import styled from "styled-components";
 import colors from "../../styles/colors";
 
 export const BookCardContainer = styled.div`
-  .book-content {
+  .book-card-content {
     background-color: ${colors.grayThreadShade2};
-    width: 330px;
+    width: 280px;
     padding: 20px;
     border-radius: 12px;
-    /* height: 200px; */
     margin-top: 20px;
-    margin-left: 10px;
+    /* margin-left: 10px; */
     display: flex;
     flex-direction: column;
+    height: 570px;
 
-
-
-    .buy-links {
+    .book-card-buy-links {
         display: flex;
         margin-top: 10px;
       }
 
-    .image-book {
-      margin: auto;
+    .book-card-description {
+      max-height: 150px;
     }
 
-    .book-description {
-      height: 50px;
+    .book-card-details {
+      padding-top: 10px;
     }
 
     img {
@@ -35,18 +33,19 @@ export const BookCardContainer = styled.div`
     h2 {
       color: ${colors.white};
       font-size: 1.2rem;
+      margin-bottom: 10px;
     }
 
     span {
       color: ${colors.letterGrayColor2};
+      font-size: 14px;
     }
 
     p {
       margin-bottom: 0;
+      margin-top: 0;
       color: ${colors.letterGrayColor};
+      font-size: 14px;
     }
   }
-
-
-
 `

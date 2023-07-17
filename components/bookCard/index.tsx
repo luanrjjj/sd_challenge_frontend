@@ -2,6 +2,7 @@ import React from 'react';
 import { AiFillAmazonSquare, AiOutlineApple } from 'react-icons/ai';
 import Image from 'next/image';
 import { BookCardContainer } from './styles';
+import { Tooltip } from 'react-tooltip';
 
 type BookCardProps = {
   image: string;
@@ -23,22 +24,25 @@ const BookCard: React.FC<BookCardProps> = ({
   buy_links
 }) => {
 
+  const descriptionTreated = description?.length > 120 ? description.substring(0, 100) + "..." : description;
+
   return (
     <BookCardContainer>
-      <div className="book-content" key={title}>
+      <div className="book-card-content" key={title}>
         <div className="image-book">
           <Image src={image} alt={title} width={300} height={300}/>
         </div>
         <h2>{title}</h2>
-        <div className="book-description">
-          <span>{description}</span>
+        <div className="book-card-description">
+          <span data-tooltip-id="tooltip-field-description" data-tooltip-content={description}>{descriptionTreated}</span>
+          <Tooltip style={{maxWidth: 300}} id="tooltip-field-description" />
         </div>
-        <div>
+        <div className="book-card-details">
           <p><b>Author:</b> {' '} {author}</p>
           <p><b>Rank:</b> {' '} {rank}</p>
           <p><b>Weeks on list:</b>{' '} {weeks_on_list}</p>
         </div>
-        <div className="buy-links">
+        <div className="book-card-buy-links">
           {buy_links.map((link: any) => (
               <div key={link.name}>
                 {link.name === 'Amazon' && (
