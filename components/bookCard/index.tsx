@@ -29,7 +29,10 @@ const BookCard: React.FC<BookCardProps> = ({
   buy_links,
 }) => {
 
-  const descriptionTreated = description?.length > 120 ? description.substring(0, 100) + "..." : description;
+  const descriptionTreated = description?.length > 120
+    ? description.substring(0, 100) + "..."
+    : description;
+
   return (
     <BookCardContainer>
       <div className="book-card-content">

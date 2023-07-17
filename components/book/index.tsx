@@ -30,7 +30,9 @@ const Book: React.FC<BookProps> = ({
   buy_links
 }) => {
   const {width} = useWindowDimensions();
-  const descriptionTreated = (description?.length > 120 && width < 600) ? description.substring(0, 100) + "..." : description;
+  const descriptionTreated = (description?.length > 120 && width < 600)
+    ? description.substring(0, 100) + "..."
+    : description;
 
   return (
     <BookContainer>
@@ -40,7 +42,6 @@ const Book: React.FC<BookProps> = ({
         </div>
         <div className="book-information">
           <h2>{title}</h2>
-            {/* <span>{`by ${author} `}</span> */}
           <div className="book-description">
           <span data-tooltip-id="tooltip-field-description" data-tooltip-content={description}>{descriptionTreated}</span>
           <Tooltip style={{maxWidth: 300}} id="tooltip-field-description" />
@@ -51,7 +52,7 @@ const Book: React.FC<BookProps> = ({
             <p><b>Weeks on list:</b>{' '} {weeks_on_list}</p>
           </div>
           <div className="book-buy-links">
-          {buy_links.map((link: any) => (
+          {buy_links.map((link: BuyLink) => (
               <div key={link.name}>
                 {link.name === 'Amazon' && (
                   <a href={link.url} target="_blank" rel="noreferrer">

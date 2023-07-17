@@ -8,18 +8,17 @@ export const BookCardContainer = styled.div`
     padding: 20px;
     border-radius: 12px;
     margin-top: 20px;
-    /* margin-left: 10px; */
     display: flex;
     flex-direction: column;
     height: 570px;
 
     .book-card-buy-links {
-        display: flex;
-        margin-top: 10px;
-      }
+      display: flex;
+      margin-top: 10px;
+    }
 
     .book-card-description {
-      max-height: 150px;
+      height: 150px;
     }
 
     .book-card-details {
