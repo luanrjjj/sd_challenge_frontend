@@ -26,14 +26,13 @@ const BookCard: React.FC<BookCardProps> = ({
   author,
   rank,
   weeks_on_list,
-  buy_links
+  buy_links,
 }) => {
 
   const descriptionTreated = description?.length > 120 ? description.substring(0, 100) + "..." : description;
-
   return (
-    <BookCardContainer key={`${title}-${rank}`}>
-      <div className="book-card-content" >
+    <BookCardContainer>
+      <div className="book-card-content">
         <div className="image-book">
           <Image src={image} alt={title} width={300} height={300} priority/>
         </div>
@@ -48,19 +47,19 @@ const BookCard: React.FC<BookCardProps> = ({
           <p><b>Weeks on list:</b>{' '} {weeks_on_list}</p>
         </div>
         <div className="book-card-buy-links">
-          {buy_links.map((link: any) => (
-              <div key={link.name}>
-                {link.name === 'Amazon' && (
-                  <a href={link.url} target="_blank" rel="noreferrer">
-                    <AiFillAmazonSquare size={30} color={link.name === 'Amazon' ? '#FF9900' : '#000'}/>
-                  </a>
-                )}
-                {link.name === 'Apple Books' && (
-                  <a href={link.url} target="_blank" rel="noreferrer">
-                    <AiOutlineApple size={30} color={link.name === 'Apple Books' ? '#FFF' : '#000'}/>
-                  </a>
-                )}
-              </div>
+          {buy_links.map((link: BuyLink, index) => (
+            <div key={link.name + index} >
+              {link.name === 'Amazon' && (
+                <a href={link.url} target="_blank" rel="noreferrer">
+                  <AiFillAmazonSquare size={30} color={link.name === 'Amazon' ? '#FF9900' : '#000'}/>
+                </a>
+              )}
+              {link.name === 'Apple Books' && (
+                <a href={link.url} target="_blank" rel="noreferrer">
+                  <AiOutlineApple size={30} color={link.name === 'Apple Books' ? '#FFF' : '#000'}/>
+                </a>
+              )}
+            </div>
           ))}
         </div>
       </div>

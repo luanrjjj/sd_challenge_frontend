@@ -4,6 +4,7 @@ import {Container} from './styles';
 import BookCard from '../../components/bookCard';
 import Filter from '../../components/Filter';
 import Book from '../../components/book';
+import Head from 'next/head';
 
 interface BuyLink {
   name: string;
@@ -24,6 +25,7 @@ interface BookProps {
 interface List {
   list_name: string;
   books: BookProps[];
+  list_id: number;
 }
 
 const Home: React.FC = () => {
@@ -33,7 +35,7 @@ const Home: React.FC = () => {
 
   const fiction = ['Combined Print and E-Book Fiction', 'Hardcover Fiction', 'Trade Fiction Paperback']
   const nonFiction= ['Combined Print and E-Book Nonfiction', 'Hardcover Nonfiction', 'Paperback Nonfiction', 'Advice How-To and Miscellaneous']
-  const childrensBooks = ['Children’s Middle Grade Hardcover', 'Children’s Picture Books', 'Children’s Series', 'Young Adult Hardcover']
+  const childrensBooks = ['Childrens Middle Grade Hardcover', 'Picture Books', 'Series Books', 'Young Adult Hardcover']
 
   const getBestSellers = useCallback(async () => {
     const { data } = await api.get("/lists/full-overview.json");
@@ -41,7 +43,8 @@ const Home: React.FC = () => {
     data.results.lists.map((list: List) => {
       listsArray.push({
         list_name: list.list_name,
-        books: list.books
+        books: list.books,
+        list_id: list.list_id
       })
     })
     setLists(listsArray)
@@ -51,9 +54,10 @@ const Home: React.FC = () => {
     if (filter.length == 0) {
       return;
     }
-    const listByFilter = lists.find((list: List) =>
-        list.list_name === filter
-    )
+
+  const listByFilter = lists.find((list: List) =>
+    list.list_name === filter
+  )
     setListFiltered(listByFilter.books)
   }, [filter])
 
@@ -71,6 +75,11 @@ const Home: React.FC = () => {
   },[getListFiltered])
 
   return (
+    <>
+      <Head>
+        <title>Best Sellers</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <Container>
         <div className="title-page">
           <h1>NY Times Best Sellers</h1>
@@ -104,37 +113,40 @@ const Home: React.FC = () => {
           )}
         </div>
         <div className="separator"/>
-          {listFiltered.length>0 ? (
-             <div className="books-list-container">
-            {listFiltered.map((book) => (
-              <Book
-                image={book.book_image}
-                title={book.title}
-                description={book.description}
-                author={book.author}
-                rank={book.rank}
-                weeks_on_list={book.weeks_on_list}
-                buy_links={book.buy_links}
-              />
-
-            ))}
+          {listFiltered.length > 0 ? (
+            <div className="books-list-container">
+              {listFiltered.map((book: BookProps) => (
+                <div key={book.title}>
+                  <Book
+                    image={book.book_image}
+                    title={book.title}
+                    description={book.description}
+                    author={book.author}
+                    rank={book.rank}
+                    weeks_on_list={book.weeks_on_list}
+                    buy_links={book.buy_links}
+                  />
+                </div>
+              ))}
             </div>
           ) : (
             <div className="books-card-container">
-            {lists.map((list: List) => (
-                <div className="content" key={list.list_name}>
+              {lists.map((list: List) => (
+                <div className="content" key={list.list_id}>
                   <h2>{list.list_name}</h2>
                     <div className="row-books">
                       {list.books.slice(0, 3).map((book: BookProps, index) => (
-                        <BookCard
-                          image={book.book_image}
-                          title={book.title}
-                          description={book.description}
-                          author={book.author}
-                          rank={book.rank}
-                          weeks_on_list={book.weeks_on_list}
-                          buy_links={book.buy_links}
-                        />
+                        <div key={list.list_id + book.weeks_on_list + index}>
+                          <BookCard
+                            image={book.book_image}
+                            title={book.title}
+                            description={book.description}
+                            author={book.author}
+                            rank={book.rank}
+                            weeks_on_list={book.weeks_on_list}
+                            buy_links={book.buy_links}
+                          />
+                        </div>
                       ))}
                     </div>
                   <div className="separator"/>
@@ -143,6 +155,7 @@ const Home: React.FC = () => {
            </div>
           )}
       </Container>
+    </>
   )
 }
 

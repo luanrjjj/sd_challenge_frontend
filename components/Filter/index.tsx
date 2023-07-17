@@ -20,32 +20,28 @@ const Filter: React.FC<FilterProps> = ({
   const filterText = filter?.length > 12 ? filter.substring(0, 12) + "..." : filter;
 
   return (
-    <>
-      <FiltersSection>
-        <div>
-          <Menu
-            menuButton={() => (
-              <MenuButton className="filter-value-selected-button" >
-                <a data-tooltip-id="tooltip-field-select" data-tooltip-content={filter}>
-                  {items.includes(filter) && filterText || defaultValue}
-                </a>
-                <Tooltip id="tooltip-field-select" />
-              </MenuButton>
-            )}
-            viewScroll={"auto"}
-            position={"auto"}
-          >
-            {items.map((type: string, index)=> (
-              <MenuItem>
-                <div className={`dropdown-filter ${type === filter ? "selected" : "" }`} key ={type} onClick={ () => setFilter(type)}>
-                  <a key={type} >{type}</a>
-                </div>
-              </MenuItem>
-            ))}
-          </Menu>
-        </div>
-      </FiltersSection>
-    </>
+    <FiltersSection key={filter}>
+        <Menu
+          menuButton={() => (
+            <MenuButton className="filter-value-selected-button" >
+              <a data-tooltip-id="tooltip-field-select" data-tooltip-content={filter}>
+                {items.includes(filter) && filterText || defaultValue}
+              </a>
+              <Tooltip id="tooltip-field-select" />
+            </MenuButton>
+          )}
+          viewScroll={"auto"}
+          position={"auto"}
+        >
+          {items.map((type: string)=> (
+            <MenuItem key={type}>
+              <div className={`dropdown-filter ${type === filter ? "selected" : "" }`} onClick={ () => setFilter(type)}>
+                <a>{type}</a>
+              </div>
+            </MenuItem>
+          ))}
+        </Menu>
+    </FiltersSection>
   )
 }
 
