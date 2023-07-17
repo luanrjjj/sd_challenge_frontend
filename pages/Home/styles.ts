@@ -57,7 +57,6 @@ export const Container = styled.div `
     height: 1px;
     background-color: ${colors.separatorColor};
     margin: 20px 0;
-
   }
 
   .content {
@@ -78,7 +77,6 @@ export const Container = styled.div `
     font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 0;
-
   }
 
   .row-books {
