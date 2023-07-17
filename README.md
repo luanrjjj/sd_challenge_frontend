@@ -7,3 +7,5 @@ To install the packages:
 
 To start the application:
   yarn dev
+
+Any problem enter in contact with me in the email: luanfreitas12@poli.ufrj.br or open an issue here.
