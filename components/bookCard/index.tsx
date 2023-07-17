@@ -13,7 +13,6 @@ type BookCardProps = {
   buy_links: any;
 };
 
-
 const BookCard: React.FC<BookCardProps> = ({
   image,
   title,
@@ -34,7 +33,6 @@ const BookCard: React.FC<BookCardProps> = ({
         <div className="book-description">
           <span>{description}</span>
         </div>
-
         <div>
           <p><b>Author:</b> {' '} {author}</p>
           <p><b>Rank:</b> {' '} {rank}</p>
@@ -42,19 +40,18 @@ const BookCard: React.FC<BookCardProps> = ({
         </div>
         <div className="buy-links">
           {buy_links.map((link: any) => (
-            (link.name === 'Amazon' || link.name == 'Apple Books') && (
               <div key={link.name}>
-                {link.name === 'Amazon' ? (
+                {link.name === 'Amazon' && (
                   <a href={link.url} target="_blank" rel="noreferrer">
                     <AiFillAmazonSquare size={30} color={link.name === 'Amazon' ? '#FF9900' : '#000'}/>
                   </a>
-                ) : (
+                )}
+                {link.name === 'Apple Books' && (
                   <a href={link.url} target="_blank" rel="noreferrer">
                     <AiOutlineApple size={30} color={link.name === 'Apple Books' ? '#FFF' : '#000'}/>
                   </a>
                 )}
               </div>
-            )
           ))}
         </div>
       </div>
