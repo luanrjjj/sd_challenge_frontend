@@ -54,7 +54,6 @@ export const Menu = styled(MenuInner)`
     z-index: 999;
 
     .dropdown-filter {
-        padding: 5x;
         font-size: 14px;
         font-weight: 700;
         width: 100%;

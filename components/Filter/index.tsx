@@ -17,7 +17,7 @@ const Filter: React.FC<FilterProps> = ({
   setFilter,
 }) => {
 
-  const filterText = filter?.length > 16 ? filter.substring(0, 16) + "..." : filter;
+  const filterText = filter?.length > 12 ? filter.substring(0, 12) + "..." : filter;
 
   return (
     <>
@@ -35,7 +35,7 @@ const Filter: React.FC<FilterProps> = ({
             viewScroll={"auto"}
             position={"auto"}
           >
-            {items.map((type:string)=> (
+            {items.map((type: string, index)=> (
               <MenuItem>
                 <div className={`dropdown-filter ${type === filter ? "selected" : "" }`} key ={type} onClick={ () => setFilter(type)}>
                   <a key={type} >{type}</a>
