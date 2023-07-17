@@ -1,6 +1,7 @@
 import React from 'react';
 import { FiltersSection, Menu } from './styles';
 import { MenuButton, MenuItem } from '@szhsin/react-menu';
+import {Tooltip} from 'react-tooltip';
 
 type FilterProps = {
   items: string [];
@@ -16,6 +17,8 @@ const Filter: React.FC<FilterProps> = ({
   setFilter,
 }) => {
 
+  const filterText = filter?.length > 16 ? filter.substring(0, 16) + "..." : filter;
+
   return (
     <>
       <FiltersSection>
@@ -23,9 +26,10 @@ const Filter: React.FC<FilterProps> = ({
           <Menu
             menuButton={() => (
               <MenuButton className="filter-value-selected-button" >
-                <a>
-                  {items.includes(filter) && filter || defaultValue}
+                <a data-tooltip-id="tooltip-field-select" data-tooltip-content={filter}>
+                  {items.includes(filter) && filterText || defaultValue}
                 </a>
+                <Tooltip id="tooltip-field-select" />
               </MenuButton>
             )}
             viewScroll={"auto"}

@@ -4,15 +4,7 @@ import colors from '../../styles/colors';
 import { Menu as MenuInner } from '@szhsin/react-menu';
 
 export const FiltersSection = styled.div`
-  display: flex;
-  max-width: 900px;
-  display: flex;
-  margin-bottom: 2rem;
-  justify-content: space-between;
-  padding-left: 2.5rem;
-  height: 40px;
-  margin-top: 50px;
-  margin: 3.5rem 1rem 2rem 0rem;
+  padding-left: .5rem;
 
   .szh-menu-button {
       border: 1px solid gray !important;
