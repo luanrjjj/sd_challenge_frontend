@@ -7,17 +7,17 @@ export const FiltersSection = styled.div`
   padding-left: .5rem;
 
   .szh-menu-button {
-      border: 1px solid gray !important;
-      height: 40px;
-      width: 80px;
-      background-color: black;
-      cursor: pointer;
+    border: 1px solid gray !important;
+    height: 40px;
+    width: 80px;
+    background-color: black;
+    cursor: pointer;
 
-      a {
-        color: ${colors.purple};
-        opacity: 0.9;
-        font-weight: 700;
-      }
+    a {
+      color: ${colors.purple};
+      opacity: 0.9;
+      font-weight: 700;
+    }
 
     &:hover {
       background-color: ${shade(0.8, `${colors.black}`)};
@@ -25,10 +25,10 @@ export const FiltersSection = styled.div`
 
     }
 
-  a {
-    & + a {
-      margin-left: 30px;
-    }
+    a {
+      & + a {
+        margin-left: 30px;
+      }
   }
 
   .filter-items-list {

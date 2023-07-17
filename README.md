@@ -1,1 +1,9 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).# ss_challenge_frontend
+This project uses Next Version 12.
+
+To install the packages is necessary to have Node 19.
+
+To install the packages:
+  yarn add
+
+To start the application:
+  yarn dev
