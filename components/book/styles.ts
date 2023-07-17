@@ -11,6 +11,7 @@ export const BookContainer = styled.div`
     padding: 20px;
     border-radius: 12px;
     margin-top: 20px;
+    grid-gap: 10px;
 
     @media (max-width: 1200px) {
     max-width: 950px;

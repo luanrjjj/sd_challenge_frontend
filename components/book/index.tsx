@@ -3,6 +3,12 @@ import { AiFillAmazonSquare, AiOutlineApple } from 'react-icons/ai';
 import Image from 'next/image';
 import { BookContainer } from './styles';
 import { Tooltip } from 'react-tooltip';
+import useWindowDimensions from '../../utils/windowDimensions';
+
+interface BuyLink {
+  name: string;
+  url: string;
+}
 
 interface BookProps {
   image: string;
@@ -11,8 +17,8 @@ interface BookProps {
   author: string;
   rank: number;
   weeks_on_list: number;
-  buy_links: any;
-};
+  buy_links: BuyLink[];
+}
 
 const Book: React.FC<BookProps> = ({
   image,
@@ -23,7 +29,8 @@ const Book: React.FC<BookProps> = ({
   weeks_on_list,
   buy_links
 }) => {
-  const descriptionTreated = description?.length > 120 ? description.substring(0, 100) + "..." : description;
+  const {width} = useWindowDimensions();
+  const descriptionTreated = (description?.length > 120 && width < 600) ? description.substring(0, 100) + "..." : description;
 
   return (
     <BookContainer>
