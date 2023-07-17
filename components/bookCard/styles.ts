@@ -4,7 +4,7 @@ import colors from "../../styles/colors";
 export const BookCardContainer = styled.div`
   .book-content {
     background-color: ${colors.grayThreadShade2};
-    width: 340px;
+    width: 330px;
     padding: 20px;
     border-radius: 12px;
     /* height: 200px; */
@@ -14,12 +14,11 @@ export const BookCardContainer = styled.div`
     flex-direction: column;
 
 
+
     .buy-links {
-      display: flex;
-      margin-top: 10px;
-      /* flex-direction: row !important; */
-    }
-    /* align-items: center; */
+        display: flex;
+        margin-top: 10px;
+      }
 
     .image-book {
       margin: auto;
