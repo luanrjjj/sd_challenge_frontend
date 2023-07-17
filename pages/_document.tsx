@@ -1,8 +1,29 @@
 
-import Document, { Html, Head, Main, NextScript, } from 'next/document'
+import Document, { Html, Head, Main, NextScript, DocumentContext, DocumentInitialProps} from 'next/document'
 import React from 'react';
 
  export default class MyDocument extends Document {
+
+  static async getInitialProps(
+    ctx: DocumentContext
+  ): Promise<DocumentInitialProps> {
+    const originalRenderPage = ctx.renderPage
+
+    // Run the React rendering logic synchronously
+    ctx.renderPage = () =>
+      originalRenderPage({
+        // Useful for wrapping the whole react tree
+        enhanceApp: (App) => App,
+        // Useful for wrapping in a per-page basis
+        enhanceComponent: (Component) => Component,
+      })
+
+    // Run the parent `getInitialProps`, it now includes the custom `renderPage`
+    const initialProps = await Document.getInitialProps(ctx)
+
+    return initialProps
+  }
+
 
    render() {
     return (
@@ -10,7 +31,7 @@ import React from 'react';
         <Head>
           <link rel="preconnect" href="https://fonts.gstatic.com"/>
           <link rel="preconnect" href="https://fonts.googleapis.com"></link>
-            <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,700;0,900;1,200;1,300;1,500&display=swap" rel="stylesheet"></link>
+          <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,700;0,900;1,200;1,300;1,500&display=swap" rel="stylesheet"></link>
         </Head>
         <body>
           <Main />
