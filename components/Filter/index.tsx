@@ -24,7 +24,7 @@ const Filter: React.FC<FilterProps> = ({
             menuButton={() => (
               <MenuButton className="filter-value-selected-button" >
                 <a>
-                  {defaultValue}
+                  {items.includes(filter) && filter || defaultValue}
                 </a>
               </MenuButton>
             )}

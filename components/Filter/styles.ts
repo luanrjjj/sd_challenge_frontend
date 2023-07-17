@@ -59,6 +59,7 @@ export const Menu = styled(MenuInner)`
     padding: 6px;
     min-width: 10rem;
     color: #fff;
+    z-index: 999;
 
     .dropdown-filter {
         padding: 5x;
