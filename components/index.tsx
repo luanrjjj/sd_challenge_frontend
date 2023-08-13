@@ -1,9 +1,15 @@
-import BookCard from '../components/bookCard';
-import Book from '../components/book';
 import Filter from '../components/Filter';
+import Table from '../components/Table';
+import TooltipText  from '../components/TooltipText';
+import ButtonAdmin from '../components/ButtonAdmin';
+import InputAdmin from './InputAdmin';
+import EditTransactionModal from './EditTransactionModal';
 
-export default {
-  BookCard,
-  Book,
-  Filter
+export  {
+  Filter,
+  Table,
+  TooltipText,
+  ButtonAdmin,
+  InputAdmin,
+  EditTransactionModal
 }
