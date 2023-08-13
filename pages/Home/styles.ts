@@ -2,11 +2,16 @@ import styled, { createGlobalStyle } from 'styled-components';
 import {shade} from 'polished';
 import colors from '../../styles/colors';
 
+
+export const Content = styled.div `
+  /* min-height: 100%; */
+
+`
+
 export const Container = styled.div `
-  width: 100%;
-  height: 100%;
-  margin: auto;
+  max-height: 100%;
   max-width: 1200px;
+  margin: 0 auto;
 
   .books-list-container {
     display: flex;
@@ -80,7 +85,7 @@ export const Container = styled.div `
   }
 
   .row-books {
-    grid-template-columns: repeat(3, auto);
+    /* grid-template-columns: repeat(3, auto);
     display: grid;
     grid-gap: 20px;
 
@@ -90,6 +95,12 @@ export const Container = styled.div `
 
     @media (max-width: 950px) {
       grid-template-columns: auto;
-    }
+    } */
+  }
+
+  .score-cards-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
   }
 `
