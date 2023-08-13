@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-let apiUrl = 'https://api.nytimes.com/svc/books/v3';
+let apiUrl = 'http://localhost:3333';
 
 const api = axios.create({
   baseURL: apiUrl,
