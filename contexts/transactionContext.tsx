@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import mockTransactions from '../pages/Home/transactions';
+import mockTransactions from '../components/mock/transactions';
 
 interface TransactionProps {
   id: number;
