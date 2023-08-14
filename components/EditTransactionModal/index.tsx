@@ -15,22 +15,34 @@ import Button from '../Button';
 const { TabPane } = Tabs;
 const { Item, useForm } = Form;
 const { Option } = Select;
+interface TransactionProps {
+  id: number;
+  type: string;
+  amount: number;
+  category: string;
+  createdAt: string;
+  description: string;
+}
+
+interface EditTransactionModalProps {
+  visible: boolean;
+  transaction: TransactionProps;
+  onClose: () => void;
+}
 
 const EditTransactionModal = ({
   visible,
   transaction: {
     id: transactionId,
-    name,
     category,
     type,
     description,
     amount,
     createdAt,
-  } = {} as any,
+  } = {} as TransactionProps,
   onClose,
-}: any) => {
+}: EditTransactionModalProps) => {
   const [transactionForm] = useForm();
-  const [images, setImages] = useState<any>([]);
   const [loading, setLoading] = useState(false);
   const { transactions, setTransactions } = useTransaction();
 
@@ -102,7 +114,6 @@ const EditTransactionModal = ({
                   }
                   updateTransaction(transactions, data);
                 } catch (error) {
-                  console.log("error: ", error);
                   notification.error({message: 'Erro ao criar curso'});
                 } finally {
                   setLoading(false);
@@ -122,10 +133,8 @@ const EditTransactionModal = ({
                 } catch (error) {
                   notification.error({message: 'Erro ao criar curso'});
                 }
-
             }}}
           >
-
               <Row gutter={24}>
                 <Col span={12}>
                   <Item label="CATEGORIA" name="category">

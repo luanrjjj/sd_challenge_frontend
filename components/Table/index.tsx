@@ -10,13 +10,13 @@ import {
 interface TableProps {
   columns: any;
   dataSource: any;
-  emptyText?: any;
+  emptyText?: string;
   loading: boolean;
   total?: number;
   smartLoad?: boolean;
   page?: number;
-  setPage?: any,
-  onChange?: any,
+  setPage?: (page: number) => void,
+  onChange?: () => void,
   paginationProps?: {};
 }
 

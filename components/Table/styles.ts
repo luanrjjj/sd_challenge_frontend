@@ -29,10 +29,7 @@ export const TableContainer = styled.div `
     }
 
     .ant-table-cell-row-hover {
-      /* &:hover { */
         background-color: ${colors.grayThreadShade2} !important;
-
-      /* } */
     }
 
     .ant-table-tbody {
@@ -44,16 +41,6 @@ export const TableContainer = styled.div `
         color: white;
         font-size: 12px;
         z-index: 0;
-
-        /* &:first-child {
-          border-top-left-radius: .75rem;
-          border-bottom-left-radius: .75rem;
-        }
-
-        &:last-child {
-          border-top-right-radius: .75rem;
-          border-bottom-right-radius: .75rem;
-        } */
       }
     }
 
@@ -116,4 +103,16 @@ export const TableContainer = styled.div `
   }
 }
 
+.ant-table-placeholder,
+.ant-table-cell {
+  background-color: ${colors.grayThread} !important;
+
+  &:hover {
+    background-color: ${colors.grayThread} !important;
+  }
+}
+
+.ant-empty-description {
+  color: white;
+}
 `

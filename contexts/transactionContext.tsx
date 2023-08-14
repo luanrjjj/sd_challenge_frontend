@@ -3,11 +3,11 @@ import mockTransactions from '../components/mock/transactions';
 
 interface TransactionProps {
   id: number;
-  // title: string;
   type: string;
   amount: number;
   category: string;
   createdAt: string;
+  description: string;
 }
 
 interface TransactionContextType {
@@ -15,12 +15,10 @@ interface TransactionContextType {
   setTransactions: React.Dispatch<React.SetStateAction<TransactionProps[]>>;
 }
 
-// Create the context
 const TransactionContext = createContext<TransactionContextType | undefined>(undefined);
 
-// Create a provider component
 export function TransactionProvider({ children }) {
-  const [transactions, setTransactions] = useState(mockTransactions); // Default value is an empty array
+  const [transactions, setTransactions] = useState(mockTransactions);
 
   return (
     <TransactionContext.Provider value={{ transactions, setTransactions }}>
@@ -29,7 +27,6 @@ export function TransactionProvider({ children }) {
   );
 }
 
-// Custom hook to access the context
 export function useTransaction() {
   return useContext(TransactionContext);
 }

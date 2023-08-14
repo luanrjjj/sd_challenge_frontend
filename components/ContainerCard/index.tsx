@@ -11,7 +11,7 @@ interface ContainerCardProps {
 const ContainerCard = ({
 children,
 title,
-}: any) => (
+}: ContainerCardProps) => (
   <Container>
     {title && (
       <div>

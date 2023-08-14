@@ -2,8 +2,6 @@ import styled, { createGlobalStyle } from 'styled-components';
 import {shade} from 'polished';
 import colors from '../../styles/colors';
 
-
-
 const Container = styled.div `
   max-height: 100%;
   max-width: 1200px;
@@ -88,8 +86,6 @@ const Container = styled.div `
     grid-gap: 30px;
     padding: 30px;
     max-width: 900px;
-    /* display: flex; */
-    /* align-items: center; */
     justify-items: center;
     margin: auto;
 

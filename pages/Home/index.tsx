@@ -17,6 +17,12 @@ interface TransactionProps {
   amount: number;
   category: string;
   createdAt: string;
+  description: string;
+}
+
+interface FilterProps {
+  key: string;
+  value: string;
 }
 
 const Home: React.FC = () => {
@@ -27,7 +33,6 @@ const Home: React.FC = () => {
   const [transaction, setTransaction] = useState<TransactionProps>({} as TransactionProps);
   const [editTransactionModal, setEditTransactionModal] = useState(false);
   const { transactions, setTransactions } = useTransaction();
-  const [lastUpdate, setLastUpdate] = useState(0)
 
   const categories = [ 'rent', 'food', 'gym', 'subscription', 'other']
   const types = ['deposit', 'withdraw']
@@ -60,33 +65,39 @@ const Home: React.FC = () => {
   }
 
   const addFilters = useCallback(() => {
+    let newFilters = [];
     if (types.includes(typeFilter)) {
-      const existTypeFilter = filters.find((filter: any) => filter.key === 'type')
+      const existTypeFilter = filters.find((filter: FilterProps) => filter.key === 'type')
       if (existTypeFilter) {
         const index = filters.indexOf(existTypeFilter);
         filters[index] = {key: 'type', value: typeFilter};
+        newFilters = filters
       } else {
-        setFilters([...filters, {key: 'type', value: typeFilter}])
+        newFilters = [...filters, {key: 'type', value: typeFilter}]
+        setFilters(newFilters)
       }
     }
 
     if (categories.includes(categoryFilter)) {
-      const existCategoryFilter = filters.find((filter: any) => filter.key === 'category')
+      const existCategoryFilter = filters.find((filter: FilterProps) => filter.key === 'category')
       if (existCategoryFilter) {
         const index = filters.indexOf(existCategoryFilter);
         filters[index] = {key: 'category', value: categoryFilter};
+        newFilters = filters
       } else {
-        setFilters([...filters, {key: 'category', value: categoryFilter}])
+        newFilters = [...filters, {key: 'category', value: categoryFilter}]
+        setFilters(newFilters)
       }
     }
-   const transactionsResult = transactions.filter((transaction: any) => {
-      return filters.every((filter: any) => {
+
+   const transactionsResult = transactions.filter((transaction: TransactionProps) => {
+      return newFilters.every((filter: any) => {
         return transaction[filter.key] === filter.value
       })
     })
 
     setTransactionsFiltered(transactionsResult)
-  }, [categoryFilter, typeFilter, lastUpdate])
+  }, [categoryFilter, typeFilter])
 
 
   useEffect(() => {
@@ -251,19 +262,13 @@ const Home: React.FC = () => {
           <EditTransactionModal
             transaction={transaction}
             visible={editTransactionModal}
-            categories={categories}
-            types={types}
-            transactions={transactions}
-            setTransactions={setTransactions}
             onClose={() => {
               setEditTransactionModal(false);
-              setTransaction({} as any)
-              setLastUpdate(lastUpdate + 1)
+              setTransaction({} as TransactionProps)
               setFilters([])
               setCategoryFilter('')
               setTypeFilter('')
             }}
-            setVisible={setEditTransactionModal}
           />
       </Container>
     </>
