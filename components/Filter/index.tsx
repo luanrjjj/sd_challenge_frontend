@@ -23,7 +23,7 @@ const Filter: React.FC<FilterProps> = ({
   setFilter,
 }) => {
 
-  const filterText = filter?.length > 12 ? filter.substring(0, 12) + "..." : filter;
+  const filterText = filter?.length > 8 ? filter.substring(0, 8) + "..." : filter;
 
   return (
     <FiltersSection key={filter}>
@@ -44,7 +44,9 @@ const Filter: React.FC<FilterProps> = ({
               <div className={`dropdown-filter ${type === filter ? "selected" : "" }`} onClick={() => {
                 setFilter(type)
                 }}>
-                <a>{type}</a>
+                <a>
+                  {type}
+                </a>
               </div>
             </MenuItem>
           ))}
