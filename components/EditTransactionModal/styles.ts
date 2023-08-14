@@ -4,19 +4,8 @@ import colors from '../../styles/colors';
 import { Modal as AntModal } from 'antd';
 import { ModalProps } from 'antd/lib/modal';
 
-export const Container = styled.div`
-  /* width: 100%;
-  height: 100%;
-  margin: 0 auto; */
-
-`;
 
 export const Modal: React.FunctionComponent<ModalProps> = styled(AntModal)`
-  /* margin: auto; */
-  /* margin-top: -40%; */
-  /* position: absolute; */
-  /* top: 20%; */
-  /* left: 30%; */
   position: relative;
   z-index:999;
 
@@ -33,7 +22,6 @@ export const Modal: React.FunctionComponent<ModalProps> = styled(AntModal)`
 
   .ant-select {
     display: flex;
-    /* align-items: center; */
 
     .anticon {
       font-size: 16px;
@@ -43,9 +31,6 @@ export const Modal: React.FunctionComponent<ModalProps> = styled(AntModal)`
 
   .ant-select {
      border-radius: 8px !important;
-     /* margin-top: 20px; */
-     /* color: white; */
-     /* border-color: white; */
      span {
         font-size: 14px !important;
      }
@@ -63,10 +48,6 @@ export const Modal: React.FunctionComponent<ModalProps> = styled(AntModal)`
     color: ${colors.white};
     font-weight: 700;
     padding: 20px;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; */
 
     .modal-footer {
       padding: 0 50px;
@@ -75,7 +56,6 @@ export const Modal: React.FunctionComponent<ModalProps> = styled(AntModal)`
     .ant-modal-close-x {
       color: ${colors.purple};
       font-size: 12px;
-      /* border-radius: 12px !important; */
     }
     span {
       font-size: 20px;
@@ -134,12 +114,9 @@ export const Modal: React.FunctionComponent<ModalProps> = styled(AntModal)`
   .ant-select-selector {
     width: 100%;
     text-align: center;
-    /* margin-top: -30px; */
   }
 
   .ant-select {
-    /* min-width: 150px !important; */
-    /* border: 1px solid ${colors.purple} !important; */
     border-radius: 12px !important;
     height: 38px !important;
     color: white;

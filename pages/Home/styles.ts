@@ -3,15 +3,13 @@ import {shade} from 'polished';
 import colors from '../../styles/colors';
 
 
-export const Content = styled.div `
-  /* min-height: 100%; */
 
-`
-
-export const Container = styled.div `
+const Container = styled.div `
   max-height: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 10px;
+  margin-bottom: 150px;
 
   .books-list-container {
     display: flex;
@@ -84,23 +82,25 @@ export const Container = styled.div `
     margin-bottom: 0;
   }
 
-  .row-books {
-    /* grid-template-columns: repeat(3, auto);
-    display: grid;
-    grid-gap: 20px;
-
-    @media (max-width: 1200px) {
-      grid-template-columns: repeat(2, auto);
-    }
-
-    @media (max-width: 950px) {
-      grid-template-columns: auto;
-    } */
-  }
-
   .score-cards-section {
     display: flex;
     justify-content: space-between;
     padding: 30px;
+    max-width: 900px;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    margin: auto;
+  }
+
+  .icons-column {
+    display: flex;
+
+    .component-btn{
+      margin-right: 10px;
+    }
   }
 `
+
+
+export default Container;

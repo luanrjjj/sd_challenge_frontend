@@ -7,13 +7,15 @@
   },
   "dependencies": {
     "@szhsin/react-menu": "szhsin/react-menu",
-    "antd": "^4.6.13",
+    "antd": "^5.8.3",
     "axios": "^1.4.0",
+    "lodash": "^4.17.21",
     "next": "12",
     "polished": "^4.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.10.1",
+    "react-text-mask": "^5.5.0",
     "react-tooltip": "^5.18.0",
     "styled-components": "^6.0.4"
   },

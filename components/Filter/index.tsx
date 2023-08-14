@@ -3,6 +3,12 @@ import { FiltersSection, Menu } from './styles';
 import { MenuButton, MenuItem } from '@szhsin/react-menu';
 import {Tooltip} from 'react-tooltip';
 
+
+interface Filter {
+  key: string;
+  value: string;
+}
+
 type FilterProps = {
   items: string [];
   defaultValue: string;
@@ -35,7 +41,9 @@ const Filter: React.FC<FilterProps> = ({
         >
           {items.map((type: string)=> (
             <MenuItem key={type}>
-              <div className={`dropdown-filter ${type === filter ? "selected" : "" }`} onClick={ () => setFilter(type)}>
+              <div className={`dropdown-filter ${type === filter ? "selected" : "" }`} onClick={() => {
+                setFilter(type)
+                }}>
                 <a>{type}</a>
               </div>
             </MenuItem>

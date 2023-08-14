@@ -13,6 +13,12 @@ const colors = {
     letterGrayColor3: '#E5E5E5',
     letterGrayColor4: '#F2F2F2',
     separatorColor:  '#FBFBFB21',
+    separatorColorWhiteBackground: '#e2e8f0',
+    headerCourse:'#2C2C2C',
+    grayShade4:'#4E4E4E',
+    purpleTint3:'#9a8df5',
+
+
 }
 
 export default colors;

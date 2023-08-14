@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Row,
   Col,
@@ -7,12 +7,10 @@ import {
   Select,
   notification,
 } from 'antd';
-import { Container, Modal } from './styles';
-import api from '../../services/api';
+import { Modal } from './styles';
 import InputAdmin from '../InputAdmin';
 import { useTransaction } from '../../contexts/transactionContext';
-// import transactionsContext from '../../contexts/transactionContext';
-// import Button from '../../components/Button';
+import Button from '../Button';
 
 const { TabPane } = Tabs;
 const { Item, useForm } = Form;
@@ -20,9 +18,6 @@ const { Option } = Select;
 
 const EditTransactionModal = ({
   visible,
-  categories = [],
-  types = [],
-  families,
   transaction: {
     id: transactionId,
     name,
@@ -31,16 +26,16 @@ const EditTransactionModal = ({
     description,
     amount,
     createdAt,
-    // visible: transaction_visible,
   } = {} as any,
   onClose,
-  refetch,
 }: any) => {
   const [transactionForm] = useForm();
   const [images, setImages] = useState<any>([]);
   const [loading, setLoading] = useState(false);
   const { transactions, setTransactions } = useTransaction();
-  console.log("XAXAXA: ", transactions);
+
+  const categories = ['Rent', 'Food', 'Gym', 'Subscription', 'Other']
+  const types = ['deposit', 'withdraw']
 
 
   useEffect(() => {
@@ -55,24 +50,19 @@ const EditTransactionModal = ({
 
   }, [transactionId, visible]);
 
-  // const trailDefaultValue = useMemo(()=> {
-  //   return trails.find((trail: any) => trail.id === trailId);
-  // },[trailId, trails])
-
-  console.log("transactionId: ", transactionId);
-
-
   const updateTransaction = (transactions, newTransaction) => {
     const getTransaction = transactions.find((transaction: any) => transaction.id === newTransaction.id);
     const index = transactions.indexOf(getTransaction);
     transactions[index] = newTransaction;
     setTransactions(transactions)
+    onClose()
     return transactions;
   }
 
   const addTransaction = (transactions, newTransaction) => {
     transactions.push(newTransaction);
     setTransactions(transactions)
+    onClose()
     return transactions;
   }
 
@@ -85,7 +75,7 @@ const EditTransactionModal = ({
       onCancel={onClose}
       footer={false}
       keyboard={true}
-      // className="edit-transaction-modal"
+      className="edit-transaction-modal"
     >
       <Tabs id="edit-user-content" defaultActiveKey="1" type="line">
         <TabPane tab="Informações da transação" key="1" style={{ padding: 4 }}>
@@ -118,16 +108,21 @@ const EditTransactionModal = ({
                   setLoading(false);
                 }
               } else {
-                const lastId = transactions[transactions.length - 1].id;
-                const data = {
-                  id: lastId + 1,
-                  description,
-                   amount,
-                   type,
-                   category,
-                   createdAt,
-                 }
-                 addTransaction(transactions, data);
+                try {
+                  const lastId = transactions[transactions.length - 1].id;
+                  const data = {
+                    id: lastId + 1,
+                    description,
+                    amount,
+                    type,
+                    category,
+                    createdAt: new Date().toISOString(),
+                   }
+                   addTransaction(transactions, data);
+                } catch (error) {
+                  notification.error({message: 'Erro ao criar curso'});
+                }
+
             }}}
           >
 
@@ -176,7 +171,7 @@ const EditTransactionModal = ({
                 </Col>
             </Row>
             <Col xs={24} sm={24} md={4}>
-                <button>Salvar</button>
+                <Button loading={loading}>Salvar</Button>
               </Col>
           </Form>
         </TabPane>
