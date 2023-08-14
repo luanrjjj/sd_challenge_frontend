@@ -68,6 +68,7 @@ const EditTransactionModal = ({
     transactions[index] = newTransaction;
     setTransactions(transactions)
     onClose()
+    localStorage.setItem('transactionsStore', JSON.stringify(transactions))
     return transactions;
   }
 
@@ -75,6 +76,7 @@ const EditTransactionModal = ({
     transactions.push(newTransaction);
     setTransactions(transactions)
     onClose()
+    localStorage.setItem('transactionsStore', JSON.stringify(transactions))
     return transactions;
   }
 

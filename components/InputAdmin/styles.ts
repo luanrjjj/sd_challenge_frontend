@@ -106,7 +106,6 @@ export const InputContainer = styled.div `
       border-bottom-left-radius: .75rem !important;
     }
 
-    // caso seja vizinho de um addon que fique a esquerda
     .ant-input-number-group-addon:first-child ~ .bewiz-input {
       border-top-left-radius: 0 !important;
       border-bottom-left-radius: 0 !important;
@@ -117,7 +116,6 @@ export const InputContainer = styled.div `
       border-bottom-right-radius: .75rem !important;
     }
 
-    // caso seja vizinho de um addon que fique a direita
     .ant-input-number-group-addon:last-child ~ .bewiz-input {
       border-top-right-radius: 0 !important;
       border-bottom-right-radius: 0 !important;

@@ -8,7 +8,6 @@
   "dependencies": {
     "@szhsin/react-menu": "szhsin/react-menu",
     "antd": "^5.8.3",
-    "axios": "^1.4.0",
     "lodash": "^4.17.21",
     "next": "12",
     "polished": "^4.2.2",
