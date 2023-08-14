@@ -14,23 +14,17 @@ export const Container = styled.div<CardInformationProps>`
   box-shadow: ${props => props.boxShadow === "dark" ? '0px 0px 5px 0px rgba( 0, 0, 0, 0.75)': '0px 4px 24px rgba(0, 0, 0, 0.15)'};
   border: 1px solid ${colors.separatorColorWhiteBackground};
   border-radius: 8px;
-  z-index: 999;
+  z-index: -1;
 
   .card-content {
     display: flex;
-    /* flex-direction: column; */
     justify-content: space-between;
-    /* align-items: center; */
-    /* height: 100%; */
     padding: 20px 10px;
-
   }
 
   .card-value {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    /* align-items: center; */
   }
 
   .card-icon {

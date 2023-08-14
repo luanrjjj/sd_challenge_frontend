@@ -11,10 +11,6 @@ const ButtonAdmin = ({
   extra,
 }: any) => {
   const iconToShow = () => {
-    if (loading) {
-      // return <Spin indicator={antIcon} />;
-    }
-
     if (icon) {
       return icon;
     }
@@ -28,15 +24,15 @@ const ButtonAdmin = ({
 
     <button
       className={
-        `gyramais-btn
-        ${lg ? 'gyramais-btn-large' : ''}
-        ${block ? 'gyramais-btn-block' : ''}
-        ${loading ? 'gyramais-btn-loading' : ''}
-        ${color ? `gyramais-btn-${color}` : ''}
-        ${link ? 'gyramais-btn-link' : ''}
-        ${icon ? `gyramais-btn-icon ${!children ? 'only-icon' : ''}` : ''}
-        ${action ? 'gyramais-action-button' : ''}
-        ${disabled ? 'gyramais-disabled' : ''}
+        `component-btn
+        ${lg ? 'component-btn-large' : ''}
+        ${block ? 'component-btn-block' : ''}
+        ${loading ? 'component-btn-loading' : ''}
+        ${color ? `component-btn-${color}` : ''}
+        ${link ? 'component-btn-link' : ''}
+        ${icon ? `component-btn-icon ${!children ? 'only-icon' : ''}` : ''}
+        ${action ? 'component-action-button' : ''}
+        ${disabled ? 'component-disabled' : ''}
         ${className || ''}`
       }
       disabled={loading || disabled}

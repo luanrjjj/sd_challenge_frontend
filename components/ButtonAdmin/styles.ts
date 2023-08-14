@@ -3,7 +3,7 @@ import colors from '../../styles/colors';
 
 
 export const ButtonContainer = styled.div `
-.gyramais-btn {
+.component-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,18 +25,18 @@ export const ButtonContainer = styled.div `
     font-weight: 600 !important;
   }
 
-  &.gyramais-btn-loading{
+  &.component-btn-loading{
     cursor: wait;
   }
-  &.gyramais-btn-primary{
+  &.component-btn-primary{
     background-color: var(--primary-color);
     color: #ffffff;
   }
-  &.gyramais-btn-secondary{
+  &.component-btn-secondary{
     background-color: var(--secondary-color);
     color: #ffffff;
   }
-  &.gyramais-btn-blue {
+  &.component-btn-blue {
     background-color: #1256FF;
     color: #ffffff;
 
@@ -45,23 +45,23 @@ export const ButtonContainer = styled.div `
       font-weight: 500 !important;
     }
   }
-  &.gyramais-btn-secondary-second {
+  &.component-btn-secondary-second {
     background-color:#B0C2ED;
     color: black;
   }
-  &.gyramais-btn-success{
+  &.component-btn-success{
     background-color: var(--success-color);
     color: #ffffff;
   }
-  &.gyramais-btn-warning{
+  &.component-btn-warning{
     background-color: var(--warning-color);
     color: #ffffff;
   }
-  &.gyramais-btn-danger{
+  &.component-btn-danger{
     background-color: var(--danger-color);
     color: #ffffff;
   }
-  &.gyramais-btn-link {
+  &.component-btn-link {
     background: none;
     border: none;
     color: var(--link-button-color);
@@ -73,7 +73,7 @@ export const ButtonContainer = styled.div `
       margin-right: .5rem;
     }
   }
-  &.gyramais-action-button {
+  &.component-action-button {
     height: 0;
     min-height:2.2rem;
     min-width: 2.2rem;
@@ -82,10 +82,7 @@ export const ButtonContainer = styled.div `
     display: flex;
     align-items: center;
     justify-content: center;
-
     padding: .6rem .6rem !important;
-
-    /* background-color: green !important; */
   }
   &:disabled{
     cursor:not-allowed;
@@ -95,11 +92,11 @@ export const ButtonContainer = styled.div `
     span {
       color: #000000 !important;
     }
-    &.gyramais-btn-link{
+    &.component-btn-link{
       background: none;
     }
 
-    &:not(.gyramais-action-button) {
+    &:not(.component-action-button) {
       .anticon{
         margin-right: 1rem;
       }
@@ -115,20 +112,20 @@ export const ButtonContainer = styled.div `
     }
   }
 }
-.gyramais-btn-large{
+.component-btn-large{
   height: 3.75rem;
   span{
     font-size: 1.25rem;
   }
 }
 
-.gyramais-btn-block{
+.component-btn-block{
   width:100%;
   max-width: 100%;
 }
 
-.new-gyramais-styles {
-  .gyramais-btn {
+.new-component-styles {
+  .component-btn {
     font-size: .9rem;
 
     padding-top: 1.5rem;
@@ -140,7 +137,7 @@ export const ButtonContainer = styled.div `
       font-weight: 500 !important;
     }
 
-    &.gyramais-btn-icon {
+    &.component-btn-icon {
       background-color: green;
 
       &.only-icon {
@@ -148,7 +145,7 @@ export const ButtonContainer = styled.div `
         padding-top: 0;
         padding-bottom: 0;
 
-        &.gyramais-btn-loading {
+        &.component-btn-loading {
           padding: .4rem !important;
         }
       }
@@ -158,12 +155,10 @@ export const ButtonContainer = styled.div `
       }
     }
 
-    &.gyramais-action-button {
+    &.component-action-button {
       border: 1px solid #C9D3CC;
       border-radius: .65rem;
     }
   }
 }
-
-
 `

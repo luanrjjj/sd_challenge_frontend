@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import colors from '../../styles/colors'
 
 export const TableContainer = styled.div `
+
   .component-table {
   .ant-table-content {
     .ant-table-thead {
@@ -23,15 +24,28 @@ export const TableContainer = styled.div `
       }
     }
 
+    .ant-table-row {
+      background-color: ${colors.grayThread} !important;
+    }
+
+    .ant-table-cell-row-hover {
+      /* &:hover { */
+        background-color: ${colors.grayThreadShade2} !important;
+
+      /* } */
+    }
+
     .ant-table-tbody {
+      background-color: ${colors.grayThread} !important;
+
       .ant-table-cell {
         text-transform: uppercase;
         font-weight: 600;
         color: white;
         font-size: 12px;
+        z-index: 0;
 
-
-        &:first-child {
+        /* &:first-child {
           border-top-left-radius: .75rem;
           border-bottom-left-radius: .75rem;
         }
@@ -39,7 +53,7 @@ export const TableContainer = styled.div `
         &:last-child {
           border-top-right-radius: .75rem;
           border-bottom-right-radius: .75rem;
-        }
+        } */
       }
     }
 

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState, useContext } from 'react';
 import {
   Row,
   Col,
@@ -10,6 +10,8 @@ import {
 import { Container, Modal } from './styles';
 import api from '../../services/api';
 import InputAdmin from '../InputAdmin';
+import { useTransaction } from '../../contexts/transactionContext';
+// import transactionsContext from '../../contexts/transactionContext';
 // import Button from '../../components/Button';
 
 const { TabPane } = Tabs;
@@ -18,7 +20,6 @@ const { Option } = Select;
 
 const EditTransactionModal = ({
   visible,
-
   categories = [],
   types = [],
   families,
@@ -38,6 +39,9 @@ const EditTransactionModal = ({
   const [transactionForm] = useForm();
   const [images, setImages] = useState<any>([]);
   const [loading, setLoading] = useState(false);
+  const { transactions, setTransactions } = useTransaction();
+  console.log("XAXAXA: ", transactions);
+
 
   useEffect(() => {
     transactionForm.setFieldsValue({
@@ -55,11 +59,28 @@ const EditTransactionModal = ({
   //   return trails.find((trail: any) => trail.id === trailId);
   // },[trailId, trails])
 
+  console.log("transactionId: ", transactionId);
+
+
+  const updateTransaction = (transactions, newTransaction) => {
+    const getTransaction = transactions.find((transaction: any) => transaction.id === newTransaction.id);
+    const index = transactions.indexOf(getTransaction);
+    transactions[index] = newTransaction;
+    setTransactions(transactions)
+    return transactions;
+  }
+
+  const addTransaction = (transactions, newTransaction) => {
+    transactions.push(newTransaction);
+    setTransactions(transactions)
+    return transactions;
+  }
+
   const modalVisible = visible
 
   return (
      <Modal
-      // centered={true}
+      centered={true}
       visible={modalVisible}
       onCancel={onClose}
       footer={false}
@@ -73,75 +94,46 @@ const EditTransactionModal = ({
             layout="vertical"
             onFinish={async (values) => {
               const {
-                name,
-                trail,
-                family,
-                backgroundColor,
-                backgroundImage,
-                teacher,
                 description,
-                visible,
+                amount,
+                type,
+                category,
               } = values;
-              const familyData = families.find((fam: any) => family === fam.name);
               if (transactionId) {
                 try {
                   setLoading(true);
                   const data = {
-                    name,
-                    trail_id: trail,
-                    family: familyData?.name,
-                    family_image: familyData?.image_url,
-                    teacher_id: familyData?.teacher,
-                    background_color: backgroundColor,
-                    background_image: backgroundImage,
-                    visible,
-                    description,
+                   id: transactionId,
+                   description,
+                    amount,
+                    type,
+                    category,
+                    createdAt,
                   }
-                  await api.put(`/admin/transactions/update/${transactionId}`, data);
-                  notification.success({
-                    message: 'Transaction added successfully!',
-                  });
-                  onClose();
-                  transactionForm.resetFields()
-                  refetch();
+                  updateTransaction(transactions, data);
                 } catch (error) {
+                  console.log("error: ", error);
                   notification.error({message: 'Erro ao criar curso'});
                 } finally {
                   setLoading(false);
                 }
               } else {
-                try {
-                  setLoading(true);
-                  const data = {
-                    name,
-                    trail_id: trail,
-                    family: familyData?.name,
-                    teacher_id: teacher,
-                    family_image: familyData?.image_url,
-                    background_color: backgroundColor,
-                    background_image: backgroundImage,
-                    description,
-                    visible,
-                  }
-                  await api.post(`/admin/transactions/create`, data);
-                  notification.success({
-                    message: 'Curso atualizado com sucesso!',
-                  });
-                  onClose();
-                  refetch();
-                  transactionForm.resetFields()
-                } catch (error) {
-                  notification.error({message: 'Erro ao atualizar curso'});
-                } finally {
-                  setLoading(false);
-                }
-              }
-            }}
+                const lastId = transactions[transactions.length - 1].id;
+                const data = {
+                  id: lastId + 1,
+                  description,
+                   amount,
+                   type,
+                   category,
+                   createdAt,
+                 }
+                 addTransaction(transactions, data);
+            }}}
           >
 
               <Row gutter={24}>
                 <Col span={12}>
-                  <Item label="Categorias" name="category">
+                  <Item label="CATEGORIA" name="category">
                     <Select>
                       {categories.map((category: any) => (
                         <Option key={category} value={category}>
@@ -153,11 +145,11 @@ const EditTransactionModal = ({
                 </Col>
 
                 <Col span={12}>
-                <Item label="Tipos" name="types">
+                <Item label="TIPO" name="type">
                   <Select>
-                    {types.map((color: any) => (
-                      <Option key={color} value={color}>
-                      {color}
+                    {types.map((type: any) => (
+                      <Option key={type} value={type}>
+                      {type}
                     </Option>
                     ))}
                   </Select>
