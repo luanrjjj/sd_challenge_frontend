@@ -37,17 +37,17 @@ const Home: React.FC = () => {
   const categories = [ 'rent', 'food', 'gym', 'subscription', 'other']
   const types = ['deposit', 'withdraw']
 
-  const totalValue = transactions.reduce((acc, transaction) => {
+  const totalValue = (filters.length > 0 ? transactionsFiltered:  transactions).reduce((acc, transaction) => {
     const valueByType = transaction.type === 'deposit' ? transaction.amount : -transaction.amount
     return acc + valueByType;
   }, 0)
 
-  const totalValueDeposited = transactions.reduce((acc, transaction) => {
+  const totalValueDeposited = (filters.length > 0 ? transactionsFiltered:  transactions).reduce((acc, transaction) => {
     const valueByType = transaction.type === 'deposit' ? acc + transaction.amount : acc;
     return valueByType;
   }, 0)
 
-  const totalValueWithdrawed = transactions.reduce((acc, transaction) => {
+  const totalValueWithdrawed =(filters.length > 0 ? transactionsFiltered:  transactions).reduce((acc, transaction) => {
     const valueByType = transaction.type === 'withdraw' ? acc - transaction.amount : acc;
     return  valueByType;
   }, 0)
