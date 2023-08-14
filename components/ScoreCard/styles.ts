@@ -9,6 +9,7 @@ interface CardInformationProps {
 export const Container = styled.div<CardInformationProps>`
   width: 240px;
   min-height: 80px;
+  max-height: 200px;
   border-radius: 8px;
   background-color: ${props => props.bgColor ? props.bgColor : colors.headerCourse};
   box-shadow: ${props => props.boxShadow === "dark" ? '0px 0px 5px 0px rgba( 0, 0, 0, 0.75)': '0px 4px 24px rgba(0, 0, 0, 0.15)'};

@@ -133,4 +133,12 @@ export const Modal: React.FunctionComponent<ModalProps> = styled(AntModal)`
     width: 100% !important;
   }
 
+  .ant-tabs-tab-btn{
+    color: ${colors.purple} !important;
+  }
+
+  .ant-tabs-ink-bar {
+    background: ${colors.purple};
+  }
+
 `;

@@ -20,22 +20,15 @@ interface TransactionProps {
 }
 
 const Home: React.FC = () => {
-  const [filter, setFilter] = useState('')
-
   const [typeFilter, setTypeFilter] = useState('Tipo')
   const [categoryFilter, setCategoryFilter] = useState('Categoria')
   const [ filters, setFilters ] = useState([])
-  console.log("filters: ", filters);
-
   const [transactionsFiltered, setTransactionsFiltered] = useState<TransactionProps[]>([]);
-  console.log("transactionsFiltered: ", transactionsFiltered);
-
   const [transaction, setTransaction] = useState<TransactionProps>({} as TransactionProps);
   const [editTransactionModal, setEditTransactionModal] = useState(false);
   const { transactions, setTransactions } = useTransaction();
   const [lastUpdate, setLastUpdate] = useState(0)
-  console.log("lastUpdate: ", lastUpdate);
-  console.log("transactions: ", transactions);
+
   const categories = [ 'rent', 'food', 'gym', 'subscription', 'other']
   const types = ['deposit', 'withdraw']
 
@@ -54,35 +47,22 @@ const Home: React.FC = () => {
     return  valueByType;
   }, 0)
 
-
   const removeTransaction = ((transaction: TransactionProps, transactions: TransactionProps[]) => {
     const index = transactions.findIndex((t: TransactionProps) => t.id === transaction.id);
     transactions.splice(index, 1);
     setTransactions([...transactions]);
   })
 
-  const getListFiltered = useCallback(async () => {
-    if (filter.length == 0) {
-      return;
-    }
-
-  const listByFilter = transactions.find((list: any) =>
-    list.list_name === filter
-  )
-    // setListFiltered(listByFilter.books)
-  }, [typeFilter, categoryFilter])
-
   const clearFilter = () => {
-    // setFilter('')
-    // setListFiltered([])
+    setFilters([]);
+    setCategoryFilter('');
+    setTypeFilter('');
   }
 
   const addFilters = useCallback(() => {
-    console.log("entrou aqui")
     if (types.includes(typeFilter)) {
       const existTypeFilter = filters.find((filter: any) => filter.key === 'type')
       if (existTypeFilter) {
-        console.log("existTypeFilter: ", existTypeFilter);
         const index = filters.indexOf(existTypeFilter);
         filters[index] = {key: 'type', value: typeFilter};
       } else {
@@ -93,7 +73,6 @@ const Home: React.FC = () => {
     if (categories.includes(categoryFilter)) {
       const existCategoryFilter = filters.find((filter: any) => filter.key === 'category')
       if (existCategoryFilter) {
-        console.log("existCategoryFilter: ", existCategoryFilter);
         const index = filters.indexOf(existCategoryFilter);
         filters[index] = {key: 'category', value: categoryFilter};
       } else {
@@ -105,14 +84,10 @@ const Home: React.FC = () => {
         return transaction[filter.key] === filter.value
       })
     })
-    console.log("transactionsResult: ", transactionsResult);
 
     setTransactionsFiltered(transactionsResult)
   }, [categoryFilter, typeFilter, lastUpdate])
 
-  useEffect(() => {
-    getListFiltered()
-  },[getListFiltered])
 
   useEffect(() => {
     addFilters()
@@ -219,13 +194,16 @@ const Home: React.FC = () => {
             setFilter={setTypeFilter}
           />
 
-          {filter && (
+          {filters.length > 0 && (
             <div className="clear-filter">
-              <button onClick={clearFilter}>Clear Filter</button>
+              <button onClick={clearFilter}>Limpar filtros</button>
             </div>
           )}
         </div>
-        <Button onClick={() => setEditTransactionModal(true)}>Criar Transação</Button>
+        <div className="section-create-transaction">
+          <Button onClick={() => setEditTransactionModal(true)}>Criar Transação</Button>
+        </div>
+
         <div className="separator"/>
         <div className="score-cards-section">
           <ScoreCard
@@ -288,8 +266,6 @@ const Home: React.FC = () => {
             setVisible={setEditTransactionModal}
           />
       </Container>
-
-
     </>
   )
 }
